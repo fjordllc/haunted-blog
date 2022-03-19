@@ -1,53 +1,19 @@
 import Vue from "vue/dist/vue.esm.browser"
-import axios from "axios"
+import LikingApp from './LikingApp.js'
 
-document.addEventListener('turbo:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const selector = '#liking-app'
-  const element = document.querySelector(selector)
-  const createPath = element.getAttribute('data-create-path')
-  const likingUsersPath = element.getAttribute('data-liking-users-path')
-  new Vue({
-    el: selector,
-    data: {
-      users: [],
-      destroyPath: undefined,
-    },
-    computed: {
-      alreadyLiked() {
-        return this.destroyPath
-      }
-    },
-    async created() {
-      await this.fetchLikingUsers()
-    },
-    methods: {
-      fetchLikingUsers: async function () {
-        const json = await axios.get(likingUsersPath)
-        this.users = json.data.users
-        this.destroyPath = json.data.destroy_path
-      },
-      create: async function () {
-        await axios.post(createPath, {}, {
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            "X-CSRF-Token": this.token(),
-          },
-        })
-        await this.fetchLikingUsers();
-      },
-      destroy: async function () {
-        await axios.delete(this.destroyPath, {
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            "X-CSRF-Token": this.token(),
-          },
-        })
-        await this.fetchLikingUsers();
-      },
-      token() {
-        const meta = document.querySelector('meta[name="csrf-token"]')
-        return meta ? meta.getAttribute('content') : ''
-      }
-    }
-  })
+  const app = document.querySelector(selector)
+  if (app) {
+    const createPath = app.getAttribute('data-create-path')
+    const likingUsersPath = app.getAttribute('data-liking-users-path')
+    new Vue({
+      render: (h) => h(LikingApp, {
+        props: {
+          createPath,
+          likingUsersPath
+        }
+      })
+    }).$mount(selector)
+  }
 })

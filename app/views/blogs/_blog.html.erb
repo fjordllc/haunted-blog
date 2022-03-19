@@ -16,17 +16,7 @@
   </p>
 
   <% if user_signed_in? %>
-    <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>">
-      <div v-if="alreadyLiked">
-        <button @click="destroy">Cancel Like</button>
-      </div>
-      <div v-else>
-        <button @click="create">Like</button>
-      </div>
-      <ul>
-        <li v-for="user in users">{{ user.nickname }}</li>
-      </ul>
-    </div>
+    <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>"></div>
   <% end %>
 
 </div>
