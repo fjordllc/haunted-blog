@@ -1,0 +1,20 @@
+<h1>My Blogs</h1>
+
+<div id="blogs" class="col-xs-12 col-md-4">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= link_to blog.title, blog %></td>
+        <td><%= blog.user.nickname %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
