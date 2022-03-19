@@ -1,10 +1,15 @@
 <div class="blog-post">
   <h2 class="blog-post-title"><%= blog.title %></h2>
   <div class="col-xs-12 col-md-4">
-  <p class="blog-post-meta"><%= l blog.created_at %> by <%= blog.user.nickname %></p>
+    <p class="blog-post-meta"><%= l blog.created_at %> by <%= blog.user.nickname %></p>
     <% if blog.secret? %>
       <div class="alert alert-warning" role="alert">
         このブログは書いた本人しか見えない秘密のブログです。
+      </div>
+    <% end %>
+    <% if blog.random_eyecatch? %>
+      <div class="blog-eyecatch">
+        <img class="resize" src="https://picsum.photos/536/354">
       </div>
     <% end %>
     <p>

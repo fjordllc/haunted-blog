@@ -28,6 +28,17 @@
     </label>
   </div>
 
+  <% if current_user.premium? %>
+    <div class="mb-3">
+      <label>
+        <%= form.check_box :random_eyecatch %>
+        ランダムなアイキャッチ画像を挿入する（Premiumユーザー限定機能）
+      </label>
+    </div>
+  <% else %>
+    <p>💡Premiumユーザーになると素敵なアイキャッチ画像をランダムに挿入できます！</p>
+  <% end %>
+
   <div class="actions">
     <%= form.submit class: "btn btn-primary" %>
   </div>
