@@ -6,6 +6,7 @@
     <tr>
       <th>Title</th>
       <th>User</th>
+      <th>Secret</th>
     </tr>
     </thead>
     <tbody>
@@ -13,6 +14,11 @@
       <tr>
         <td><%= link_to blog.title, blog %></td>
         <td><%= blog.user.nickname %></td>
+        <td>
+          <% if blog.secret? %>
+            ㊙
+          <% end %>
+        </td>
       </tr>
     <% end %>
     </tbody>

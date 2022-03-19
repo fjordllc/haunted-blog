@@ -1,22 +1,13 @@
-<div id="<%= dom_id blog %>">
-  <p>
-    <strong>Title:</strong>
-    <%= blog.title %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <br>
-    <%= format_content(blog) %>
-  </p>
-
-  <p>
-    <strong>Secret:</strong>
-    <%= blog.secret? %>
-  </p>
-
-  <% if user_signed_in? %>
-    <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>"></div>
-  <% end %>
-
+<h2 class="blog-title"><%= blog.title %></h2>
+<div class="blog-author">Written by <%= blog.user.nickname %></div>
+<% if blog.secret? %>
+  <div class="alert alert-warning" role="alert">
+    このブログは秘密のブログです。書いた本人にしか見えません。
+  </div>
+<% end %>
+<div class="blog-content">
+  <%= format_content(blog) %>
 </div>
+<% if user_signed_in? %>
+  <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>"></div>
+<% end %>
