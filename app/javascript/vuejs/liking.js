@@ -1,7 +1,7 @@
 import Vue from "vue/dist/vue.esm.browser"
 import LikingApp from './LikingApp.js'
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   const selector = '#liking-app'
   const app = document.querySelector(selector)
   if (app) {

@@ -3,15 +3,21 @@ import axios from "axios"
 export default {
   template: `
     <div>
-      <div v-if="alreadyLiked">
-        <button @click="destroy">Cancel Like</button>
-      </div>
-      <div v-else>
-        <button @click="create">Like</button>
-      </div>
-      <ul>
-        <li v-for="user in users" :key="user.id">{{ user.nickname }}</li>
-      </ul>
+      <span v-if="alreadyLiked">
+        <button @click="destroy" class="btn btn-link btn-like"><i class="bi bi-hand-thumbs-up-fill" /></button>
+      </span>
+      <span v-else>
+        <button @click="create" class="btn btn-link btn-like"><i class="bi bi-hand-thumbs-up" /></button>
+      </span>
+      <span class="liked-by" v-if="anyoneLiked">
+        Liked by
+        <ul>
+          <li v-for="user in users" :key="user.id" class="cat-item">{{ user.nickname }}</li>
+        </ul>
+      </span>
+      <span class="liked-by" v-else>
+        Hit first like!
+      </span>
     </div>
   `,
   props: {
@@ -27,6 +33,9 @@ export default {
   computed: {
     alreadyLiked() {
       return this.destroyPath
+    },
+    anyoneLiked() {
+      return this.users.length > 0
     }
   },
   async created() {
