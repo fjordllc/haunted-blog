@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  belongs_to :user
+
   validates :title, :content, presence: true
 
   scope :published, -> { where("secret = FALSE") }
