@@ -16,10 +16,16 @@
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
-
   <div class="mb-3">
     <%= form.label :content, class: "form-label" %>
     <%= form.text_area :content, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <label>
+      <%= form.check_box :secret %>
+      Secret
+    </label>
   </div>
 
   <div class="actions">
