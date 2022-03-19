@@ -5,10 +5,4 @@
     <%= link_to "Edit this blog", edit_blog_path(@blog) %> |
   <% end %>
   <%= link_to "Back to blogs", blogs_path %>
-
-  <% if @blog.owned_by?(current_user) %>
-    <div class="actions">
-      <%= button_to "Destroy this blog", @blog, method: :delete, class: 'btn btn-danger', form: { data: { turbo_confirm: "Are you sure?" } } %>
-    </div>
-  <% end %>
 </div>
