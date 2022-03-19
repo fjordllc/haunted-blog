@@ -1,5 +1,7 @@
 class Blog < ApplicationRecord
   belongs_to :user
+  has_many :likings, dependent: :destroy
+  has_many :liking_users, class_name: 'User', source: :user, through: :likings
 
   validates :title, :content, presence: true
 
