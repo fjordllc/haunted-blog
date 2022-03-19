@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, only: %i(edit create update destroy)
+  before_action :authenticate_user!, only: %i(new edit create update destroy)
 
   before_action :set_blog, only: %i[ show edit update destroy ]
 
