@@ -10,4 +10,8 @@ class Blog < ApplicationRecord
   end
 
   scope :default_order, -> { order(id: :desc) }
+
+  def owned_by?(target_user)
+    user == target_user
+  end
 end
