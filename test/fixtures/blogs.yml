@@ -1,0 +1,20 @@
+alice_blog:
+  user: alice
+  title: こんにちは、アリスです
+  content: こんにちは。こんにちは。
+  secret: false
+  random_eyecatch: false
+
+alice_secret_blog:
+  user: alice
+  title: 秘密のブログです
+  content: これを見た人は死ぬ。
+  secret: true
+  random_eyecatch: false
+
+bob_blog:
+  user: bob
+  title: こんばんは、ボブです
+  content: こんばんは。こんばんは。
+  secret: false
+  random_eyecatch: false

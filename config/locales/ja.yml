@@ -7,6 +7,12 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      blog:
+        title: タイトル
+        content: 本文
+        secret: プライベートなブログにする
+        random_eyecatch: ランダムなアイキャッチ画像を挿入する（Premiumユーザー限定機能）
   date:
     abbr_day_names:
       - 日

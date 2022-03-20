@@ -24,7 +24,7 @@
   <div class="mb-3">
     <label>
       <%= form.check_box :secret %>
-      Secret
+      <%=  Blog.human_attribute_name :secret %>
     </label>
   </div>
 
@@ -32,7 +32,7 @@
     <div class="mb-3">
       <label>
         <%= form.check_box :random_eyecatch %>
-        ランダムなアイキャッチ画像を挿入する（Premiumユーザー限定機能）
+        <%=  Blog.human_attribute_name :random_eyecatch %>
       </label>
     </div>
   <% else %>

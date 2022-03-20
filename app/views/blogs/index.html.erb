@@ -4,7 +4,7 @@
   <%= form_with url: blogs_path, method: :get, class: "form-inline" do %>
     <div class="input-group mb-3">
       <%= search_field_tag :term, params[:term], class: "form-control", id: :term, placeholder: "Search Blogs" %>
-      <%= button_tag class: "btn btn-outline-secondary" do %>
+      <%= button_tag class: "btn btn-outline-secondary btn-blog-search" do %>
         <i class="bi bi-search form-control-feedback"></i>
       <% end %>
     </div>

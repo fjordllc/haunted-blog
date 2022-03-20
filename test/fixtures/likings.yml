@@ -1,0 +1,3 @@
+alice_liked_bob_blog:
+  user: alice
+  blog: bob_blog

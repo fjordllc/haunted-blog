@@ -12,9 +12,11 @@
         <img class="resize" src="https://picsum.photos/536/354">
       </div>
     <% end %>
-    <p>
-      <%= format_content(blog) %>
-    </p>
+    <div class="blog-content">
+      <p>
+        <%= format_content(blog) %>
+      </p>
+    </div>
     <% if user_signed_in? %>
       <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>"></div>
     <% end %>
