@@ -14,6 +14,10 @@ class Blog < ApplicationRecord
     where('title LIKE :term OR content LIKE :term', term: "%#{escaped_term}%")
   }
 
+  scope :accessible, lambda { |user|
+    where(user_id: user&.id).or(published)
+  }
+
   scope :default_order, -> { order(id: :desc) }
 
   def owned_by?(target_user)
