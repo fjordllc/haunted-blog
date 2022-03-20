@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::LikingUsersController < ApplicationController
   def index
     blog = Blog.find(params[:blog_id])

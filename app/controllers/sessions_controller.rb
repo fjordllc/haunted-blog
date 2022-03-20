@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < Devise::SessionsController
   # TODO: Monkey patch for Turbo
   # https://github.com/heartcombo/devise/pull/5410

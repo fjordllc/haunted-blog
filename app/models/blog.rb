@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blog < ApplicationRecord
   belongs_to :user
   has_many :likings, dependent: :destroy
@@ -5,11 +7,11 @@ class Blog < ApplicationRecord
 
   validates :title, :content, presence: true
 
-  scope :published, -> { where("secret = FALSE") }
+  scope :published, -> { where('secret = FALSE') }
 
-  scope :search, -> (term) do
+  scope :search, lambda { |term|
     where("title LIKE '%#{term}%' OR content LIKE '%#{term}%'")
-  end
+  }
 
   scope :default_order, -> { order(id: :desc) }
 

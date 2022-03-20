@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Blog.delete_all
 User.delete_all
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Liking < ApplicationRecord
   belongs_to :blog
   belongs_to :user
