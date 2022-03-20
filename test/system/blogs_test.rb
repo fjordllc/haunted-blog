@@ -27,7 +27,7 @@ class BlogsTest < ApplicationSystemTestCase
     assert_text 'こんにちは。こんにちは。'
   end
 
-  test 'ブログのCRUD' do
+  test 'ブログの作成' do
     # プレミアムユーザーの場合 - アイキャッチ画像の挿入が可能
     sign_in_as(@alice)
     click_link 'New blog'
@@ -55,6 +55,29 @@ class BlogsTest < ApplicationSystemTestCase
     assert_selector '.blog-post-title', text: '今日の出来事'
     assert_selector '.blog-content', text: 'ボブと遊びました。'
     assert_no_selector '.blog-eyecatch'
+  end
+
+  test 'ブログの編集と削除' do
+    # 自分のブログは編集と削除ができる
+    sign_in_as(@alice)
+    visit blog_path(blogs(:alice_blog))
+    click_link 'Edit this blog'
+    fill_in 'タイトル', with: 'はろー、アリスです'
+    click_button '更新する'
+
+    assert_text 'Blog was successfully updated.'
+    assert_selector '.blog-post-title', text: 'はろー、アリスです'
+
+    click_link 'Edit this blog'
+    accept_alert do
+      click_link 'Delete'
+    end
+    assert_text 'Blog was successfully destroyed.'
+
+    # 他人のブログは編集と削除ができない
+    visit blog_path(blogs(:bob_blog))
+    assert_selector '.blog-post-title', text: 'こんばんは、ボブです'
+    assert_no_link 'Edit this blog'
   end
 
   test 'ブログの検索' do

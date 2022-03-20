@@ -1,26 +1,30 @@
 <h1>My Blogs</h1>
 
 <div id="blogs" class="col-xs-12 col-md-4">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Secret</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @blogs.each do |blog| %>
+  <% if blogs = @blogs.presence %>
+    <table class="table">
+      <thead>
       <tr>
-        <td><%= link_to blog.title, blog %></td>
-        <td><%= blog.user.nickname %></td>
-        <td>
-          <% if blog.secret? %>
-            ㊙
-          <% end %>
-        </td>
+        <th>Title</th>
+        <th>User</th>
+        <th>Secret</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% blogs.each do |blog| %>
+        <tr>
+          <td><%= link_to blog.title, blog %></td>
+          <td><%= blog.user.nickname %></td>
+          <td>
+            <% if blog.secret? %>
+              ㊙
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p><%= t('views.common.no_data') %></p>
+  <% end %>
 </div>
