@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+puts "\n== Running seeds.rb"
 
 Blog.delete_all
 User.delete_all
