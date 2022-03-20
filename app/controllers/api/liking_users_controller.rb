@@ -1,6 +1,4 @@
 class Api::LikingUsersController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     blog = Blog.find(params[:blog_id])
     users = blog.liking_users.order(:id)
