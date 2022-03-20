@@ -17,7 +17,7 @@
         <%= format_content(blog) %>
       </p>
     </div>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !blog.secret? %>
       <div id="liking-app" data-liking-users-path="<%= api_blog_liking_users_path(blog) %>" data-create-path="<%= api_blog_likings_path(blog) %>"></div>
     <% end %>
     <hr>
