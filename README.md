@@ -22,8 +22,7 @@ $ git clone https://github.com/自分のアカウント名/haunted-blog.git
 5. `.ruby-version` に書かれたバージョンのRubyがインストールされていなければインストールしてください。
 6. mainブランチから提出用ブランチをを作成してください。（ `git checkout -b fix-vulnerability` ）
 7. `bin/setup`コマンドで環境セットアップを実行してください。
-8. `bin/dev` して動作確認し、スタート地点のアプリケーション仕様を把握してください。
-    - このアプリはRails 7.0 + esbuildを使っているため、`rails s`ではなく`bin/dev`コマンドで起動します。
+8. `bin/rails s` して動作確認し、スタート地点のアプリケーション仕様を把握してください。
 9. http://localhost:3000/ にアクセスしてブログ一覧が表示されることを確認してください。
 10. ログインする場合は以下のいずれかのログイン情報を使ってください。パスワードはいずれも "password" です。
     - alice@example.com (premiumユーザー)
