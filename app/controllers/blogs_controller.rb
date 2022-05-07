@@ -60,6 +60,8 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :secret, :random_eyecatch)
+    columns = [:title, :content, :secret]
+    columns << :random_eyecatch if current_user.premium?
+    params.require(:blog).permit(columns)
   end
 end
