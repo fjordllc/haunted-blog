@@ -49,7 +49,10 @@ class BlogsController < ApplicationController
   end
 
   def correct_user
-    redirect_to(blogs_path) unless @blog.owned_by?(current_user)
+    unless @blog.owned_by?(current_user)
+      raise ActiveRecord::RecordNotFound
+      redirect_to(blogs_path)
+    end
   end
 
   def blog_params
