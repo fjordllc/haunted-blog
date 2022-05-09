@@ -46,21 +46,15 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.find(params[:id])
-    if @blog.secret? && !@blog.owned_by?(current_user)
-      raise ActiveRecord::RecordNotFound
-      redirect_to(blogs_path)
-    end
+    raise ActiveRecord::RecordNotFound if @blog.secret? && !@blog.owned_by?(current_user)
   end
 
   def correct_user
-    unless @blog.owned_by?(current_user)
-      raise ActiveRecord::RecordNotFound
-      redirect_to(blogs_path)
-    end
+    raise ActiveRecord::RecordNotFound unless @blog.owned_by?(current_user)
   end
 
   def blog_params
-    columns = [:title, :content, :secret]
+    columns = %i[title content secret]
     columns << :random_eyecatch if current_user.premium?
     params.require(:blog).permit(columns)
   end
