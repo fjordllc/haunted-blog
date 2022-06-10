@@ -14,7 +14,7 @@
     <% end %>
     <div class="blog-content">
       <p>
-        <%= format_content(blog) %>
+        <%= h(blog.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
       </p>
     </div>
     <% if user_signed_in? && !blog.secret? %>
