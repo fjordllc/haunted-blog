@@ -19,10 +19,7 @@ class BlogsController < ApplicationController
   def edit; end
 
   def create
-    # a = blog_params
-    # a[:content] = h(a[:content])
     @blog = current_user.blogs.new(blog_params)
-    p blog_params
     if @blog.save
       redirect_to blog_url(@blog), notice: 'Blog was successfully created.'
     else
