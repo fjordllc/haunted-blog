@@ -123,6 +123,9 @@ class BlogsTest < ApplicationSystemTestCase
   test 'HTMLの構造が正しい' do
     visit blog_path(blogs(:alice_blog))
     assert_text 'こんにちは、アリスです'
-    assert_no_selector 'p+p'
+    within '.blog-content' do
+      assert_no_selector 'p+p'
+      assert_no_selector 'p+div'
+    end
   end
 end

@@ -35,7 +35,11 @@
 }
 
 .blog-content {
-  p + p {
+  p + p, p + div {
+    &:before {
+      content: '👻';
+      font-size: 200px;
+    }
     background-color: yellow;
     animation: r1 1s linear infinite;
   }
