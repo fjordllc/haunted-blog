@@ -24,7 +24,7 @@
   <div class="mb-3">
     <label>
       <%= form.check_box :secret %>
-      <%=  Blog.human_attribute_name :secret %>
+      <%= Blog.human_attribute_name :secret %>
     </label>
   </div>
 
@@ -32,7 +32,7 @@
     <div class="mb-3">
       <label>
         <%= form.check_box :random_eyecatch %>
-        <%=  Blog.human_attribute_name :random_eyecatch %>
+        <%= Blog.human_attribute_name :random_eyecatch %>
       </label>
     </div>
   <% else %>
