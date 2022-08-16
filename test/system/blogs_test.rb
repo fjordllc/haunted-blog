@@ -98,12 +98,13 @@ class BlogsTest < ApplicationSystemTestCase
     sign_in_as(@alice)
     click_link 'New blog'
     fill_in 'タイトル', with: '今日の出来事'
-    fill_in '本文', with: "ボブと遊びました。\n楽しかったです。"
+    fill_in '本文', with: "ボブと遊びました。\n楽しかったです。\n\n本当に楽しかった。"
     click_button '登録する'
+    assert_text 'Blog was successfully created.'
 
     # 表示上も改行される
-    assert_text 'Blog was successfully created.'
-    assert_selector '.blog-content', text: "ボブと遊びました。\n楽しかったです。"
+    text = find('.blog-content').text
+    assert_match(/ボブと遊びました。\n楽しかったです。\n{1,2}本当に楽しかった。/, text)
   end
 
   test 'いいね機能' do
@@ -118,14 +119,5 @@ class BlogsTest < ApplicationSystemTestCase
 
     find('.btn-like').click
     assert_text 'Liked by Alice'
-  end
-
-  test 'HTMLの構造が正しい' do
-    visit blog_path(blogs(:alice_blog))
-    assert_text 'こんにちは、アリスです'
-    within '.blog-content' do
-      assert_no_selector 'p+p'
-      assert_no_selector 'p+div'
-    end
   end
 end
