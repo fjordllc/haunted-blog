@@ -33,19 +33,3 @@
     border-radius: 8px;
   }
 }
-
-.blog-content {
-  p + p, p + div {
-    &:before {
-      content: '👻';
-      font-size: 200px;
-    }
-    background-color: yellow;
-    animation: r1 1s linear infinite;
-  }
-
-  @keyframes r1 {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-}
