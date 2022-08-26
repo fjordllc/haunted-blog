@@ -9,7 +9,9 @@ class BlogsController < ApplicationController
     @blogs = Blog.search(params[:term]).published.default_order
   end
 
-  def show; end
+  def show
+    ensure_user if @blog.secret
+  end
 
   def new
     @blog = Blog.new
@@ -42,7 +44,7 @@ class BlogsController < ApplicationController
   end
 
   private
-  
+
   def ensure_user
     @blogs = current_user.blogs
     @blog = @blogs.find(params[:id]) 
