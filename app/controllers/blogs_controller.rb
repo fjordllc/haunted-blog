@@ -2,7 +2,7 @@
 
 class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-
+  before_action :ensure_user, only: %i[edit update destroy]
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
@@ -42,6 +42,11 @@ class BlogsController < ApplicationController
   end
 
   private
+  
+  def ensure_user
+    @blogs = current_user.blogs
+    @blog = @blogs.find(params[:id]) 
+  end
 
   def set_blog
     @blog = Blog.find(params[:id])
