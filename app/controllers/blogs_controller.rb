@@ -50,7 +50,7 @@ class BlogsController < ApplicationController
   end
 
   def authenticate_author!
-    raise ActiveRecord::RecordNotFound if !@blog.owned_by?(current_user)
+    raise ActiveRecord::RecordNotFound unless @blog.owned_by?(current_user)
   end
 
   def authenticate_for_secret_blog!
@@ -58,6 +58,8 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :secret, :random_eyecatch)
+    checked_params = params.require(:blog).permit(:title, :content, :secret, :random_eyecatch)
+    checked_params[:random_eyecatch] = false unless current_user.premium
+    checked_params
   end
 end
