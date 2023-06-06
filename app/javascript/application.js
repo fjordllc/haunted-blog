@@ -1,3 +1,3 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./vuejs/liking"
+import "@hotwired/turbo-rails";
+import "./react/liking";
