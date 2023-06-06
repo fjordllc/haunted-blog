@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.js'
 import LikingApp from './LikingApp.js'
 
 document.addEventListener('turbo:load', () => {
