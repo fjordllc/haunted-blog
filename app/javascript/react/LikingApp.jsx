@@ -66,7 +66,7 @@ export default function ({ createPath, likingUsersPath }) {
       )}
       {anyoneLiked ? (
         <span className="liked-by">
-          Liked by&nbsp;
+          Liked by{" "}
           <ul>
             {users.map((user) => (
               <li key={user.id} className="cat-item">
