@@ -3,19 +3,19 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.1'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
+gem 'rails', '~> 7.0.6'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
@@ -57,6 +57,9 @@ end
 
 group :development do
   gem 'erb_lint', require: false
+  # 以下のPRがリリースされたら最新のrubocopを使うようにする
+  # https://github.com/fjordllc/rubocop-fjord/pull/16
+  gem 'rubocop', '~> 1.45.1', require: false
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -67,7 +70,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
 
 gem 'devise'
