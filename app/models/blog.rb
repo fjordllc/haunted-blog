@@ -15,7 +15,7 @@ class Blog < ApplicationRecord
   }
 
   scope :accessible, lambda { |user|
-    where(user: user).or(published)
+    where(user:).or(published)
   }
 
   scope :default_order, -> { order(id: :desc) }
