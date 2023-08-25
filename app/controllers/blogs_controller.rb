@@ -49,9 +49,7 @@ class BlogsController < ApplicationController
 
   def authenticate_correct_owner
     @blog = Blog.find(params[:id])
-    unless @blog.user == current_user
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound unless @blog.user == current_user
   end
 
   def blog_params
