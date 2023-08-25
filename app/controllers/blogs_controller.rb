@@ -2,7 +2,7 @@
 
 class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-
+  before_action :authenticate_correct_owner, only: [:edit, :update, :destroy]
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
@@ -45,6 +45,13 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.find(params[:id])
+  end
+
+  def authenticate_correct_owner
+    @blog = Blog.find(params[:id])
+    unless @blog.user == current_user
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def blog_params
