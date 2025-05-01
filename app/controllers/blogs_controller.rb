@@ -29,6 +29,8 @@ class BlogsController < ApplicationController
   end
 
   def update
+    return redirect_to blogs_url, alert: 'This request is invalid.' if blog_params[:random_eyecatch] && !current_user.premium
+
     if @blog.update(blog_params)
       redirect_to blog_url(@blog), notice: 'Blog was successfully updated.'
     else
