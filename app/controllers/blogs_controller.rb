@@ -45,7 +45,15 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-    @blog = action_name == 'show' ? Blog.find(params[:id]) : current_user.blogs.find(params[:id])
+    action_name == 'show' ? set_visible_blog : set_owned_blog
+  end
+
+  def set_visible_blog
+    @blog = Blog.find_by(id: params[:id], secret: false) || Blog.find_by!(id: params[:id], user: current_user)
+  end
+
+  def set_owned_blog
+    @blog = current_user.blogs.find(params[:id])
   end
 
   def blog_params
