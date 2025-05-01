@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   before_action :set_blog, only: %i[show edit update destroy]
+  before_action :authorize_owner, only: %i[edit update destroy]
 
   def index
     @blogs = Blog.search(params[:term]).published.default_order
@@ -44,10 +45,14 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-    @blog = Blog.find(params[:id])
+    @blog = action_name == 'show' ? Blog.find(params[:id]) : current_user.blogs.find(params[:id])
   end
 
   def blog_params
     params.require(:blog).permit(:title, :content, :secret, :random_eyecatch)
+  end
+
+  def authorize_owner
+    redirect_to blogs_url, alert: 'You are not the owner of this blog.' unless @blog.owned_by?(current_user)
   end
 end
