@@ -9,7 +9,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     visit root_path
     click_link 'Sign In'
     fill_in 'Eメール', with: user.email
-    fill_in 'パスワード', with: 'password'
+    fill_in 'パスワード', with: 'p@ssw0rd'
     click_button 'Log in'
     assert_text 'ログインしました。'
   end
