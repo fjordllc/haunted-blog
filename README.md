@@ -24,7 +24,7 @@ $ git clone https://github.com/自分のアカウント名/haunted-blog.git
 7. `bin/setup`コマンドで環境セットアップを実行してください。
 8. `bin/dev` して動作確認し、スタート地点のアプリケーション仕様を把握してください。
 9. http://localhost:3000/ にアクセスしてブログ一覧が表示されることを確認してください。
-10. ログインする場合は以下のいずれかのログイン情報を使ってください。パスワードはいずれも "password" です。
+10. ログインする場合は以下のいずれかのログイン情報を使ってください。パスワードはいずれも "p@ssw0rd" です。
     - alice@example.com (premiumユーザー)
     - bob@example.com （通常ユーザー)
     - carol@example.com (通常ユーザー)
