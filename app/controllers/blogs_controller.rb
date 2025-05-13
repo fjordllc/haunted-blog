@@ -5,6 +5,7 @@ class BlogsController < ApplicationController
 
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :ensure_owner, only: %i[edit update destroy]
+  before_action :ensure_viewable, only: %i[show]
 
   def index
     @blogs = Blog.search(params[:term]).published.default_order
@@ -49,7 +50,14 @@ class BlogsController < ApplicationController
   end
 
   def ensure_owner
-    return if @blog.user == current_user
+    return if @blog.owned_by?(current_user)
+
+    raise ActiveRecord::RecordNotFound
+  end
+
+  def ensure_viewable
+    return unless @blog.secret?
+    return if user_signed_in? && @blog.owned_by?(current_user)
 
     raise ActiveRecord::RecordNotFound
   end
