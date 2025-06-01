@@ -10,7 +10,7 @@
 </div>
 
 <div class="delete-action">
-  <%= link_to @blog, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" do %>
+  <%= button_to @blog, method: :delete, data: {turbo_confirm: 'Are you sure?' }, class: "btn btn-light btn-sm" do %>
     <span class="bi bi-trash" aria-hidden="true"></span>
     Delete
   <% end %>
