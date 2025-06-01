@@ -10,9 +10,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def sign_in_as(user)
     visit root_path
-    assert_current_path root_path
+    assert_css 'h1', text: 'Blogs'
     click_link 'Sign In'
-    assert_current_path new_user_session_path
+    assert_css 'h2', text: 'Log in'
     fill_in 'Eメール', with: user.email
     fill_in 'パスワード', with: 'password'
     click_button 'Log in'
