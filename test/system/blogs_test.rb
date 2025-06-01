@@ -72,7 +72,7 @@ class BlogsTest < ApplicationSystemTestCase
 
     click_link 'Edit this blog'
     accept_alert do
-      click_link 'Delete'
+      click_button 'Delete'
     end
     assert_text 'Blog was successfully destroyed.'
 

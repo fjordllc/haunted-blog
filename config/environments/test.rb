@@ -23,7 +23,9 @@ Rails.application.configure do
   config.cache_store = :null_store
 
   # Render exception templates for rescuable exceptions and raise for other exceptions.
-  config.action_dispatch.show_exceptions = :rescuable
+  # NOTE: Rails 7.1以降では :rescuable がデフォルトだが、既存のテストコードに合わせてあえて :none を指定する
+  # https://picolab.dev/2023/12/06/rails-7-1_action_dispatch-show_exceptions/
+  config.action_dispatch.show_exceptions = :none
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
