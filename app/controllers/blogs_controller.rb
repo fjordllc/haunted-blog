@@ -52,6 +52,6 @@ class BlogsController < ApplicationController
   def blog_params
     fields = %i[title content secret]
     fields.push(:random_eyecatch) if current_user.premium?
-    params.require(:blog).permit(*fields)
+    params.expect(blog: fields)
   end
 end
