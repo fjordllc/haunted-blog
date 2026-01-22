@@ -10,7 +10,11 @@ class BlogsController < ApplicationController
     @blogs = Blog.search(params[:term]).published.default_order
   end
 
-  def show; end
+  def show
+    if @blog.secret && @blog.user != current_user
+      render status: :not_found, html: helpers.tag.strong('他ユーザーの秘密のブログは見れません')
+    end
+  end
 
   def new
     @blog = Blog.new
