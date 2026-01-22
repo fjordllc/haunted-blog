@@ -5,6 +5,7 @@ class BlogsController < ApplicationController
 
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :authorize_user, only: %i[edit update destroy]
+  before_action :authorize_random_eyecatch, only: %i[create update]
 
   def index
     @blogs = Blog.search(params[:term]).published.default_order
@@ -56,6 +57,12 @@ class BlogsController < ApplicationController
     return if @blog.user == current_user
 
     render status: :not_found, html: helpers.tag.strong('編集権限がありません')
+  end
+
+  def authorize_random_eyecatch
+    return if current_user.premium || !blog_params[:random_eyecatch]
+
+    head :bad_request
   end
 
   def blog_params
