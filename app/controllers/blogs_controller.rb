@@ -9,7 +9,10 @@ class BlogsController < ApplicationController
     @blogs = Blog.search(params[:term]).published.default_order
   end
 
-  def show; end
+  def show
+    @blog = Blog.find(params[:id])
+    raise ActiveRecord::RecordNotFound if @blog.secret && !@blog.owned_by?(current_user)
+  end
 
   def new
     @blog = Blog.new
