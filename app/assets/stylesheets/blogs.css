@@ -1,0 +1,37 @@
+.delete-action {
+  margin-top: 20px;
+}
+
+.btn-like {
+  padding: 0;
+}
+
+.liked-by {
+  font-size: 12px;
+  color: #888;
+}
+
+.liked-by ul, .liked-by li {
+  padding: 0;
+  display: inline-block;
+}
+
+.liked-by li:not(:last-child)::after {
+  content: ',';
+  margin: 0 4px 0 0;
+}
+
+.blog-post {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.blog-eyecatch {
+  margin: 18px 0;
+}
+
+.blog-eyecatch .resize {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
