@@ -26,6 +26,16 @@
   margin-bottom: 1em;
 }
 
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
 .blog-eyecatch {
   margin: 18px 0;
 }
