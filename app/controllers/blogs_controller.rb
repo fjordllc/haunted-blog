@@ -3,15 +3,17 @@
 class BlogsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
-  before_action :set_blog, only: %i[show]
-  before_action :check_secret, only: %i[show]
   before_action :set_my_blog, only: %i[edit update destroy]
+  before_action :require_premium, only: %i[create update]
 
   def index
     @blogs = Blog.search(params[:term]).published.default_order
   end
 
-  def show; end
+  def show
+    @blog = Blog.find(params[:id])
+    head :not_found if @blog.secret? && @blog.user != current_user
+  end
 
   def new
     @blog = Blog.new
@@ -45,16 +47,14 @@ class BlogsController < ApplicationController
 
   private
 
-  def set_blog
-    @blog = Blog.find(params[:id])
-  end
-
-  def check_secret
-    head :not_found if @blog.secret? && @blog.user != current_user
-  end
-
   def set_my_blog
     @blog = current_user.blogs.find(params[:id])
+  end
+
+  def require_premium
+    return unless params.dig(:blog, :random_eyecatch) == '1'
+
+    head :bad_request unless current_user.premium?
   end
 
   def blog_params
